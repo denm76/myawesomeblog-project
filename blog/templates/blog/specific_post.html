@@ -1,14 +1,14 @@
-
+<!--{{post.post_title}}-->
 <!doctype html>
 <html lang="en">
-{% load static %}<!--подключение статических файлов-->
+{% load static %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>My Awesome Blog</title>
+    <title>{{ post.post_title }}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -41,7 +41,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#e8a363;font-style:italic">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">My Awesome Blog</a>
+    <a class="navbar-brand" href="{% url 'home' %}">My Awesome Blog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,49 +49,26 @@
       <div class="navbar-nav " style="margin-left:auto;">
         <a class="nav-link" href="{% static 'about_me.txt' %}">About Me </a>
         <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/denis.morozov.986">Facebook</a>
-        <a class="nav-link" href="{% url 'showblog'%}">Blog</a>
+        <a class="nav-link active " href="#">Blog</a>
       </div>
     </div>
   </div>
 </nav>
 </header>
 
-<main>
+<main role="main" class="pl-3">
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h2>Hey there!</h2>
-        <h2>I'm exited to see you</h2>
-        <h2>You can write me right now!</h2>
-        <p>
-          <a href="mailto:denm76@gmail.com" class="btn btn-primary my-2">Mail Me</a>
-        </p>
-        <img src="{% static 'SSA44298.jpg' %}" height=400 width=400 alt="Den Morozov">
-      </div>
-    </div>
-  </section>
 
-  <div class="album py-5" style="background-color:#eacaad">
-    <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for event in events.all %}<!--подставляем во вьюху данные из events/models.py-->
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="card-img-top" src="{{event.event_image.url}}" alt="image"><!--подставляем во вьюху изображение из events/models.py-->
-            <div class="card-body">
-              <p class="card-text">{{event.event_text}}</p><!--подставляем во вьюху данные из events/models.py-->
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+  <h2>{{ post.post_title }}</h2>
+  <img height=400 width=400 src="{{post.post_image.url}}" alt="image">
+  <br>
+  <h4>{{post.post_text}}</h4>
+  {{post.post_date}}
+  <br><br><br>
+
 
 </main>
-
 
 </div>
 
